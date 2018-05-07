@@ -1,0 +1,31 @@
+1、监听器(1)实现以下对应的接口；2)使用注解或者在web.xml中进行配置)
+    1)ServletRequestAttributeListener 当request对象添加、移除、替换属性(attribute)时触发对应的方法
+        a)attributeAdded() 调用request.setAttribute()时触发
+        b)attributeRemoved()
+        c)attributeReplaced()
+    2)ServletRequestListener当request对象被创建以及销毁时，触发对应的方法
+        a)requestDestroyed(ServletRequestEvent)
+        b)requestInitialized(ServletRequestEvent)
+    3)HttpSessionAttributeListener
+    4)HttpSessionListener
+    5)ServletContextAttributeListener
+    6)ServletContextListener
+
+    --特殊的监听器,不需要配置，绑定实体类
+    7)HttpSessionBindingListener
+        使用实体类实现监听器，作用监听器的实现类对象被添加进作用域或者移除作用域时触发对应方法
+
+2、数据源和连接池
+    1)在Tomcat的配置文件context.xml中配置<Resource>标签
+    2)在Java代码中使用JNDI(Java命名与目录接口服务)获取对应的数据源对象
+    3)通过数据源对象获取数据库连接
+    注意：因为数据源配置在web容器中，所以必须在web环境(Tomcat启动)下获取数据库连接
+
+3、关联表-对象的关联关系
+    1)多对一
+      a)在从表对象subject中创建一个属性grade用来指向主表对象（表示课程对应的年级信息）
+      b)在查询中通过关联查询查出关联的两个对象的各个属性，然后分别构建两个对象，将主表对象赋值给从表的关联属性（subject.setGrade(grade)）
+      c)在获取从表对象时，可以通过关联属性获取关联的主表信息(${subject.grade.name})
+    2)1对多
+      a)在主表对象grade中构建一个集合，存放关联的从表对象
+      b)但是一般情况下，1对多方向很少直接显示所有的关联信息，所以，当需要显示关联信息时，再根据外键字段去从表中查询对应的对象集合，再加载到主表属性中去

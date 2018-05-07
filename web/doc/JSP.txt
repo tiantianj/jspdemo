@@ -1,0 +1,32 @@
+1、B/S和C/S构架的程序的区别
+2、JSP：Java Server Page
+3、jsp指令
+   <%@   %>
+   page: contentType
+         language
+         import
+   include 包含其它页面
+   forword 转发
+4、jsp页面的java脚本，使用<%  %>包含，<%-- --%>jsp注释
+5、jsp的内置对象
+   1）out：用于在页面输出内容，相当于Servlet中的response.getWrite()
+           在页面输出内容也可以使用<%= %>
+   2)request
+   3)response
+6、jsp作用域——用来跨越页面/Servlet传递数据
+   1)page ：当前页面作用域
+   2)request : 单次请求对象
+   3)session：一次客户端和服务器端之间的会话
+   4)application
+7、对比页面间跳转的方式——转发和重定向
+   1)在多个页面和Servlet之间传递请求（request）中的数据，使用转发的方式
+   2)如果在页面间跳转不需要传递请求(request)数据，则可以使用重定向
+8、JSP/Servlet的生命周期
+   一般情况下，在web程序运行期间，每个Servlet（JSP翻译的Servlet）只会创建一次对应的实例对象
+   JSP页面一般只在初次访问的时候，翻译编译成Servlet字节码，以后再访问同一个JSP时，直接运行对应的字节码
+   1)当前请求Servlet时，服务器创建对应的Servlet对象
+   2)调用init()方法，对Servlet进行初始化
+   3)调用service()方法，执行业务请求
+   4)在Web服务关闭，或者设置回收之前，调用destroy()
+   1/2只在第一次请求Servlet时执行，以后每次请求都只执行3，4也只在web程序正常退出时执行
+9、<%! int i=1; %> 这种方式声明的变量为从属于当前JSP页面的成员变量，在程序运行期间，只会声明一次

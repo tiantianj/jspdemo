@@ -1,0 +1,42 @@
+1、EL表达式  ${表达式}
+   作用：在jsp页面中可以直接获取jsp相关作用域中的attribute数据
+   1)操作符
+        a) "." 访问对象的属性（通过对应的getter方法获取）
+        b) "[]" 通过字符串格式的属性名访问对象的属性/通过下标访问数组或者集合中的对象
+   ${subject.no} 相当于
+   <%
+        Subject subject = (Subject) request.getAttribute("subject");
+        out.print(subject.getNo());
+   %>
+2、EL表达式能屏蔽常见的异常错误、不会显示null对象
+3、使用EL表达式显示对象之前，必须先将对象放入jsp的作用域中
+   查找显示对象时，是按照从page->request->session->application的顺序查找的(范围越小，优先级越高)
+4、EL表达式的内置对象
+   pageScope
+   requestScope["对象名称"]
+   sessionScope
+   applicationScope
+   pageContext 获取jsp中的相关隐式/内置对象
+   param  获取request中的参数，相当于request.getParameter();
+5、在JSP页面获取项目的完整路径
+    ${pageContext.request.scheme}    协议
+    ${pageContext.request.serverName}  服务器地址
+    ${pageContext.request.serverPort}  服务器端口号
+    ${pageContext.request.contextPath}  项目根目录名称
+6、EL表达式常见错误
+   错误写法：${表达式1} 运算符 ${表达式2}
+   正确写法：${ 表达式1 运算符 表达式2 }
+7、JSTL JSP标准标签库 简化页面输出显示（减少Java脚本和HTML标签的杂糅）
+   使用步骤：
+   1)添加两个jar包
+   2)在页面上引入标签库
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+   3)在页面主体部分使用相应标签
+8、JSTL的分支结构标签和循环结构标签
+    <c:if>
+    <c:choose>
+        <c:when></c:when>
+        <c:otherwise></c:otherwise>
+    </c:choose>
+    <c:forEach>
+9、${empty a} 判断a是否为null或者为空字符串或者集合长度是否为0

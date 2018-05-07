@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课程列表页面</title>
+    <style>
+        table,td{
+            border: 1px solid #CCCCCC;
+        }
+        table{
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <table class="subjectList">
+        <tr>
+            <td>编号</td>
+            <td>课程名称</td>
+            <td>总课时</td>
+            <td>年级编号</td>
+        </tr>
+    </table>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+    <script>
+        var subs = [{
+            no:1,
+            name:"Java",
+            classHour:120,
+            gradeId:1
+        },{
+            no:2,
+            name:".net",
+            classHour:120,
+            gradeId:2
+        },{
+            no:3,
+            name:"PHP",
+            classHour:120,
+            gradeId:1
+        },{
+            no:4,
+            name:"UI",
+            classHour:20,
+            gradeId:2
+        }]
+        $(function () {
+            for(var i=0;i<subs.length;i++) {
+                var newTr = "<tr><td>"+subs[i].no+"</td><td>"+subs[i].name+"</td><td>"+
+                    subs[i].classHour+"</td><td>"+subs[i].gradeId+"</td></tr>";
+                $(".subjectList").append($(newTr));
+            }
+        })
+    </script>
+</body>
+</html>

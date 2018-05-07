@@ -1,0 +1,32 @@
+1.Web项目的开发过程
+  1)搭建环境（构建项目、导入jar包、构建分层结构(package)）
+  2)构建实体类——entity、domain、VO、POJO  <----->  Table
+  3)开发持久化层——DAO——专注于数据库操作，一个方法执行一个数据库的SQL
+    a)数据库操作的通用父类BaseDao
+    b)XxxDao接口——XxxDaoImpl实现类
+    c)数据库更新操作：doXxx()或者do()
+            查询操作：findXxx()或者getXxx()
+  4)业务逻辑层——service/biz/BI——专注于程序实现的功能，一个功能一个方法，
+  一个方法可能会调用若干个数据库的操作（在业务层次上实现数据库的事务操作）
+    a)XxxService接口——XxxServiceImpl实现类
+  5)Web层
+    a)控制层——controller
+    b)前端页面——view
+2.JavaBean——Java程序中的可复用组件
+   本质上，就是一个Java类（1、属性私有化；2、提供公共的对外接口/方法）
+   功能上区分，1)封装数据的实体类  2)封装业务的业务类(Dao/Service)
+3.程序分层
+  从底层到表示层：dao->service->controller
+  1)上层依赖下层，依赖关系不跨层
+  2)下层不能调用上一层
+  3)下层不能依赖上一层
+  4)在上一层不能出现下一层的概念
+
+4.页面包含——动态引入
+  1)<jsp:include page="/util/pager.jsp"></jsp:include>
+        page:路径直接从项目根目录查找，不需要添加项目名称
+  2)<c:import url="/util/pager.jsp">
+        <c:param name="totalCount" value="${pager.totalCount}"/>
+        <c:param name="pageNo" value="${pager.pageNo}"/>
+        <c:param name="pageCount" value="${pager.pageCount}"/>
+    </c:import>
